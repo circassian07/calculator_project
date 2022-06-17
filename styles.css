@@ -24,11 +24,14 @@ body {
 }
 
 .screen {
+    display: flex;
+    justify-content: end;
     height: 25%;
     width: 90%;
     background-color: rgba(133, 214, 159, 0.445);
     margin-top: auto;
     margin-bottom: auto;
+    font-family: 'Press Start 2P', cursive;
 }
 
 .keyboard {
@@ -53,6 +56,12 @@ button {
     height: 100%;
     font-size: 1.2rem;
     background-color: rgba(255, 158, 31, 0.849);
+}
+
+#screen_text {
+    margin-top: auto;
+    margin-right: 5%;
+    margin-bottom: 5%;
 }
 
 .container, .screen, button {
