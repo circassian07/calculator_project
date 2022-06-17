@@ -15,6 +15,7 @@ body {
     flex-wrap: wrap;
     height: 70vh;
     width: 30vw;
+    min-width: 335px;
     background-color: lightgray;
     margin-top: auto;
     margin-bottom: auto;
@@ -31,7 +32,7 @@ body {
 }
 
 .keyboard {
-    height: 70%;
+    height: 50%;
     width: 90%;
 }
 
@@ -39,6 +40,19 @@ button {
     width: 24%;
     height: 25%;
     font-size: 3rem;
+}
+
+.clear {
+    display: flex;
+    justify-content: end;
+    height: 5%;
+    width: 90%;
+}
+
+.clear > button {
+    height: 100%;
+    font-size: 1.2rem;
+    background-color: rgba(255, 158, 31, 0.849);
 }
 
 .container, .screen, button {
