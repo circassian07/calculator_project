@@ -8,13 +8,17 @@ const divide = (a,b) => a / b;
 
 function operate (operation, a, b) {
     if (operation === "add") {
-        displayValue.innerHTML = add(a,b);
+        displayValue.innerHTML = add(a,b).toFixed(2);
     } else if (operation === "subtract") {
-        displayValue.innerHTML = subtract(a,b);
+        displayValue.innerHTML = subtract(a,b).toFixed(2);
     } else if (operation === "multiply") {
-        displayValue.innerHTML = multiply(a,b);
+        displayValue.innerHTML = multiply(a,b).toFixed(2);
     } else if (operation === "divide") {
-        displayValue.innerHTML = divide(a,b);
+        if (b === 0) {
+            displayValue.innerHTML = "ERROR";
+        } else {
+            displayValue.innerHTML = divide(a,b).toFixed(2);
+        }
     }   
 }
 
@@ -24,6 +28,7 @@ const displayOp = document.getElementById("display_op");
 let arithmetic = "";
 let firstNumber = 0;
 let secondNumber = 0;
+let decimalPoint = false;
 
 // numerical buttons
 
@@ -57,39 +62,48 @@ eight.addEventListener("click", () => displayValue.innerHTML += 8)
 const nine = document.getElementById("nine")
 nine.addEventListener("click", () => displayValue.innerHTML += 9)
 
+const decimal = document.getElementById("decimal")
+decimal.addEventListener("click", () => {
+    displayValue.innerHTML += ".";
+    decimalPnt(true);
+})
 
 // operational buttons
 
 const added = document.getElementById("add")
 added.addEventListener("click", () => {
-    firstNumber = parseInt(displayValue.innerHTML);
+    firstNumber = parseFloat(displayValue.innerHTML);
     displayValue.innerHTML = "";
     displayOp.innerHTML = "+";
     arithmetic="add";
+    decimalPnt(false);
 })
 
 const times = document.getElementById("multiply")
 times.addEventListener("click", () => {
-    firstNumber = parseInt(displayValue.innerHTML);
+    firstNumber = parseFloat(displayValue.innerHTML);
     displayValue.innerHTML = "";
     displayOp.innerHTML = "*";
     arithmetic="multiply";
+    decimalPnt(false);
 })
 
 const minus = document.getElementById("subtract")
 minus.addEventListener("click", () => {
-    firstNumber = parseInt(displayValue.innerHTML);
+    firstNumber = parseFloat(displayValue.innerHTML);
     displayValue.innerHTML = "";
     displayOp.innerHTML = "-";
     arithmetic="subtract";
+    decimalPnt(false);
 })
 
 const division = document.getElementById("divide")
 division.addEventListener("click", () => {
-    firstNumber = parseInt(displayValue.innerHTML);
+    firstNumber = parseFloat(displayValue.innerHTML);
     displayValue.innerHTML = "";
     displayOp.innerHTML = "/";
     arithmetic="divide";
+    decimalPnt(false);
 })
 
 // equals button 
@@ -97,8 +111,10 @@ division.addEventListener("click", () => {
 const equals = document.getElementById("equals")
 equals.addEventListener("click", () => {
     displayOp.innerHTML = "=";
-    secondNumber = parseInt(displayValue.innerHTML)
+    secondNumber = parseFloat(displayValue.innerHTML)
     operate(arithmetic, firstNumber, secondNumber)
+    arithmetic = "";
+    decimalPnt(false)
 })
 
 // clear button 
@@ -109,4 +125,20 @@ clear.addEventListener("click", () => {
     firstNumber = 0;
     secondNumber = 0;
     arithmetic = "";
+    decimalPnt(false)
 })
+
+// delete button
+const deleteBtn = document.getElementById("delete")
+deleteBtn.addEventListener("click", () => displayValue.innerHTML = displayValue.innerHTML.slice(0,-1))
+
+// disable/enable decimal point
+function decimalPnt (decStatus) {
+    if (decStatus === false) {
+        document.getElementById("disabled").disabled = false;
+        document.getElementById("disabled").setAttribute("id","decimal")
+    } else if (decStatus === true) {
+        document.getElementById("decimal").disabled = true;
+        document.getElementById("decimal").setAttribute("id","disabled")
+    }
+}
