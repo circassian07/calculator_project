@@ -62,6 +62,15 @@ button {
     margin-top: auto;
     margin-right: 5%;
     margin-bottom: 5%;
+    align-self: flex-end;
+}
+
+#display_op {
+    margin-top: auto;
+    margin-right: auto;
+    margin-left: 5%;
+    margin-bottom: 5%;
+    align-self: flex-start;
 }
 
 .container, .screen, button {
